@@ -26,6 +26,8 @@ public class CharacterControllerScript : MonoBehaviour
     float maxDelay = 0.5f;
     bool dashReady = false;
     public bool dash = false;
+    public bool onGround = false;
+    public bool isGliding = false;
     //end simplemovement variables/getters
 
 
@@ -36,13 +38,22 @@ public class CharacterControllerScript : MonoBehaviour
 
     void Update()
     {
-        if(dash != true)
-        {
-            simpleMovementHandler();
-        }
+
+        simpleMovementHandler();
+
         dashHandler();
+        if (characterController.isGrounded)
+        {
+            onGround = true;
+        }
+        if (!characterController.isGrounded)
+        {
+            onGround = false;
+        }
+
+        glidingMechanic();
     }
-    
+
     void simpleMovementHandler()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -60,7 +71,6 @@ public class CharacterControllerScript : MonoBehaviour
         if (characterController.isGrounded)
         {
             canDoubleJump = true;
-
             if (Input.GetButtonDown("Jump"))
             {
                 yDirection = jumpSpeed;
@@ -80,23 +90,81 @@ public class CharacterControllerScript : MonoBehaviour
     }
     void dashHandler()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.W) && onGround != true)
         {
             if (dashReady)
-                Dash();
+            {
+                forewardDash();
+            }
             else
-                PrepareDash(true);
+            {
+                PrepareDashForeward(true);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.A) && onGround != true)
+        {
+            if (dashReady)
+            {
+                leftDash();
+            }
+            else
+            {
+                PrepareDashLeft(true);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.S) && onGround != true)
+        {
+            if (dashReady)
+            {
+                backwardDash();
+            }
+            else
+            {
+                PrepareDashBackward(true);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.D) && onGround != true)
+        {
+            if (dashReady)
+            {
+                rightDash();
+            }
+            else
+            {
+                PrepareDashRight(true);
+            }
         }
     }
-    void Dash()
+    void forewardDash()
     {
         dashReady = false;
-        Debug.Log("Hold Dash");
         //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
-
+        characterController.Move(new Vector3(-10, 0, 0));
         dash = false;
     }
-    void PrepareDash(bool makeReady)
+    void backwardDash()
+    {
+        dashReady = false;
+        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
+        characterController.Move(new Vector3(10, 0, 0));
+        dash = false;
+    }
+    void leftDash()
+    {
+        dashReady = false;
+        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
+        characterController.Move(new Vector3(0, 0, -10));
+        dash = false;
+    }
+    void rightDash()
+    {
+        dashReady = false;
+        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
+        characterController.Move(new Vector3(0, 0, 10));
+        dash = false;
+    }
+
+    void PrepareDashForeward(bool makeReady)
     {
         //this is where the handling happens
         CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
@@ -104,9 +172,45 @@ public class CharacterControllerScript : MonoBehaviour
         dashReady = true;
         dash = true;
     }
+    void PrepareDashBackward(bool makeReady)
+    {
+        //this is where the handling happens
+        CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
+        Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
+        dashReady = true;
+        dash = true;
+    }
+    void PrepareDashLeft(bool makeReady)
+    {
+        //this is where the handling happens
+        CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
+        Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
+        dashReady = true;
+        dash = true;
+    }
+    void PrepareDashRight(bool makeReady)
+    {
+        //this is where the handling happens
+        CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
+        Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
+        dashReady = true;
+        dash = true;
+    }
+
     void CancelDash()
     {
         dashReady = false;
         dash = false;
+    }
+    void glidingMechanic()
+    {
+        if (isGliding == true)
+        {
+            gravity = 1;
+        }
+        else
+        {
+            gravity = 9.81f;
+        }
     }
 }
