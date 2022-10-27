@@ -77,7 +77,7 @@ public class modifyScript : MonoBehaviour
 
 //Ray ray;
 
-//cardinal directions
+////cardinal directions
 //public bool movingForward = false;
 //public bool movingBackward = false;
 //public bool movingLeft = false;
@@ -97,7 +97,7 @@ public class modifyScript : MonoBehaviour
 //public Collider msc;
 
 ////camera movement smoothing
-//if(normalCameraFollow)
+//if (normalCameraFollow)
 //{
 //    Vector3 desiredPosition = target.position + offset;
 //    Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
@@ -121,11 +121,11 @@ public class modifyScript : MonoBehaviour
 //        Chunk chunk = null;
 //        chunks.TryGetValue(new WorldPos(Convert.ToInt32(chunkPos.x), Convert.ToInt32(chunkPos.y), Convert.ToInt32(chunkPos.z)), out chunk);
 
-//        Debug.Log("Test");        
+//        Debug.Log("Test");
 //    }
 //}
 
-//placeholder camera movement smoothing
+////placeholder camera movement smoothing
 //if (normalCameraFollow == false)
 //{
 //    placeHolderOffset = new Vector3(0, 15, 0);
@@ -142,7 +142,7 @@ public class modifyScript : MonoBehaviour
 //    if (normalCameraFollow == true)
 //    {
 //        transform.position = sc.transform.position;
-//    } 
+//    }
 
 //}
 
