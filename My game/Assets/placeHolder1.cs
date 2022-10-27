@@ -124,122 +124,122 @@ public class placeHolder1 : MonoBehaviour
 
     void movementModifier()
     {
-        if (movingForward == true && movingBackward == false)
-        {
-            Quaternion forwardPos = Quaternion.Euler(10, -90, 0);
+        //if (movingForward == true && movingBackward == false)
+        //{
+        //    Quaternion forwardPos = Quaternion.Euler(10, -90, 0);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, forwardPos, smoothRot);
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, forwardPos, smoothRot);
 
-            movingBackward = false;
+        //    movingBackward = false;
 
-            if (transform.rotation == forwardPos)
-            {
-                movingForward = false;
-            }
-        }
+        //    if (transform.rotation == forwardPos)
+        //    {
+        //        movingForward = false;
+        //    }
+        //}
 
-        if (movingBackward == true && movingForward == false)
-        {
-            Quaternion backwardPos = Quaternion.Euler(40, -90, 0);
+        //if (movingBackward == true && movingForward == false)
+        //{
+        //    Quaternion backwardPos = Quaternion.Euler(40, -90, 0);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, backwardPos, smoothRot);
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, backwardPos, smoothRot);
 
-            movingForward = false;
+        //    movingForward = false;
 
-            if (transform.rotation == backwardPos)
-            {
-                movingBackward = false;
-            }
-        }
+        //    if (transform.rotation == backwardPos)
+        //    {
+        //        movingBackward = false;
+        //    }
+        //}
 
-        if (movingLeft == true && movingRight == false)
-        {
-            Quaternion leftPos = Quaternion.Euler(25, -115, 0);
+        //if (movingLeft == true && movingRight == false)
+        //{
+        //    Quaternion leftPos = Quaternion.Euler(25, -115, 0);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, leftPos, smoothRot);
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, leftPos, smoothRot);
 
-            movingRight = false;
+        //    movingRight = false;
 
-            if (transform.rotation == leftPos)
-            {
-                movingLeft = false;
-            }
-        }
+        //    if (transform.rotation == leftPos)
+        //    {
+        //        movingLeft = false;
+        //    }
+        //}
 
-        if (movingRight == true && movingLeft == false)
-        {
-            Quaternion rightPos = Quaternion.Euler(25, -65, 0);
+        //if (movingRight == true && movingLeft == false)
+        //{
+        //    Quaternion rightPos = Quaternion.Euler(25, -65, 0);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, rightPos, smoothRot);
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, rightPos, smoothRot);
 
-            movingLeft = false;
+        //    movingLeft = false;
 
-            if (transform.rotation == rightPos)
-            {
-                movingRight = false;
-            }
-        }
+        //    if (transform.rotation == rightPos)
+        //    {
+        //        movingRight = false;
+        //    }
+        //}
 
-        //diagonal
+        ////diagonal
 
-        if (movingForward == true && movingLeft == true)
-        {
-            Quaternion northWestPos = Quaternion.Euler(10, -115, 0);
+        //if (movingForward == true && movingLeft == true)
+        //{
+        //    Quaternion northWestPos = Quaternion.Euler(10, -115, 0);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, northWestPos, smoothRot);
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, northWestPos, smoothRot);
 
-            if (transform.rotation == northWestPos)
-            {
-                movingForward = false;
-                movingLeft = false;
-            }
-        } // northwest
+        //    if (transform.rotation == northWestPos)
+        //    {
+        //        movingForward = false;
+        //        movingLeft = false;
+        //    }
+        //} // northwest
 
-        if (movingForward == true && movingRight == true)
-        {
-            Quaternion northEastPos = Quaternion.Euler(20, -75, 0);
+        //if (movingForward == true && movingRight == true)
+        //{
+        //    Quaternion northEastPos = Quaternion.Euler(20, -75, 0);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, northEastPos, smoothRot);
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, northEastPos, smoothRot);
 
-            if (transform.rotation == northEastPos)
-            {
-                movingForward = false;
-                movingRight = false;
-            }
-        } // northeast
+        //    if (transform.rotation == northEastPos)
+        //    {
+        //        movingForward = false;
+        //        movingRight = false;
+        //    }
+        //} // northeast
 
-        if (movingBackward == true && movingLeft == true)
-        {
-            Quaternion southWestPos = Quaternion.Euler(40, -100, 0);
+        //if (movingBackward == true && movingLeft == true)
+        //{
+        //    Quaternion southWestPos = Quaternion.Euler(40, -100, 0);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, southWestPos, smoothRot);
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, southWestPos, smoothRot);
 
-            if (transform.rotation == southWestPos)
-            {
-                movingBackward = false;
-                movingLeft = false;
-            }
-        } // southwest
+        //    if (transform.rotation == southWestPos)
+        //    {
+        //        movingBackward = false;
+        //        movingLeft = false;
+        //    }
+        //} // southwest
 
-        if (movingBackward == true && movingRight == true)
-        {
-            Quaternion southEastPos = Quaternion.Euler(35, -60, 0);
+        //if (movingBackward == true && movingRight == true)
+        //{
+        //    Quaternion southEastPos = Quaternion.Euler(35, -60, 0);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, southEastPos, smoothRot);
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, southEastPos, smoothRot);
 
-            if (transform.rotation == southEastPos)
-            {
-                movingBackward = false;
-                movingRight = false;
-            }
-        } // southeast
+        //    if (transform.rotation == southEastPos)
+        //    {
+        //        movingBackward = false;
+        //        movingRight = false;
+        //    }
+        //} // southeast
 
-        if (characterController.velocity.y == 0 && characterController.velocity.x == 0)
-        {
-            Quaternion restingPos = Quaternion.Euler(20, -90, 0);
+        //if (characterController.velocity.y == 0 && characterController.velocity.x == 0)
+        //{
+        //    Quaternion restingPos = Quaternion.Euler(20, -90, 0);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, restingPos, smoothRot);
-        } // resting pos  
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, restingPos, smoothRot);
+        //} // resting pos  
     }
 }
 
