@@ -20,6 +20,7 @@ public class CharacterControllerScript : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode sprintKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -43,7 +44,7 @@ public class CharacterControllerScript : MonoBehaviour
     bool rightDashReady = false;
 
     [Header("Dash Stuff")]
-
+    public bool dash = false;
     public float dashSpeed = 10f;
     public float maxDelay = 0.5f;
 
@@ -59,8 +60,7 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void Update()
     {
-        Dash();
-
+        dashHandler();
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
@@ -72,12 +72,25 @@ public class CharacterControllerScript : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+        sprint();
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
         rb.AddForce(Vector3.down * gravity, forceMode);
+    }
+
+    private void sprint()
+    {
+        if(Input.GetKey(sprintKey))
+        {
+            moveSpeed = 30;
+        }
+        else
+        {
+            moveSpeed = 20;
+        }
     }
 
     private void MyInput()
@@ -130,10 +143,12 @@ public class CharacterControllerScript : MonoBehaviour
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
+
     private void ResetJump()
     {
         readyToJump = true;
     }
+
     private void Dash()
     {
         if (Input.GetKeyDown(KeyCode.L))
@@ -143,119 +158,128 @@ public class CharacterControllerScript : MonoBehaviour
             Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
             backwardDashReady = true;
 
-                    rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
         }
 
     }
+
+    void dashHandler()
+    {
+        if (Input.GetKeyUp(KeyCode.W) && grounded != true)
+        {
+            if (forewardDashReady)
+            {
+                forewardDash();
+            }
+            else
+            {
+                PrepareDashForeward(true);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.A) && grounded != true)
+        {
+            if (leftDashReady)
+            {
+                leftDash();
+            }
+            else
+            {
+                PrepareDashLeft(true);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.S) && grounded != true)
+        {
+            if (backwardDashReady)
+            {
+                backwardDash();
+            }
+            else
+            {
+                PrepareDashBackward(true);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.D) && grounded != true)
+        {
+            if (rightDashReady)
+            {
+                rightDash();
+            }
+            else
+            {
+                PrepareDashRight(true);
+            }
+        }
+    }
+
+    void forewardDash()
+    {
+        forewardDashReady = false;
+        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
+        rb.AddForce(-transform.right * dashSpeed, ForceMode.Impulse);
+        dash = false;
+    }
+    void backwardDash()
+    {
+        backwardDashReady = false;
+        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
+        rb.AddForce(transform.right * dashSpeed, ForceMode.Impulse);
+        dash = false;
+    }
+    void leftDash()
+    {
+        leftDashReady = false;
+        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
+        rb.AddForce(-transform.forward * dashSpeed, ForceMode.Impulse);
+        dash = false;
+    }
+    void rightDash()
+    {
+        rightDashReady = false;
+        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
+        rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
+        dash = false;
+    }
+
+    void PrepareDashForeward(bool makeReady)
+    {
+        //this is where the handling happens
+        CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
+        Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
+        forewardDashReady = true;
+        dash = true;
+    }
+    void PrepareDashBackward(bool makeReady)
+    {
+        //this is where the handling happens
+        CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
+        Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
+        backwardDashReady = true;
+        dash = true;
+    }
+    void PrepareDashLeft(bool makeReady)
+    {
+        //this is where the handling happens
+        CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
+        Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
+        leftDashReady = true;
+        dash = true;
+    }
+    void PrepareDashRight(bool makeReady)
+    {
+
+        CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
+        Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
+        rightDashReady = true;
+        dash = true;
+    }
+    void CancelDash()
+    {
+        leftDashReady = false;
+        rightDashReady = false;
+        forewardDashReady = false;
+        backwardDashReady = false;
+        //dash = false;
+    }
 }
-//    void dashHandler()
-//    {
-//        if (Input.GetKeyUp(KeyCode.W) && grounded != true)
-//        {
-//            if (forewardDashReady)
-//            {
-//                forewardDash();
-//            }
-//            else
-//            {
-//                PrepareDashForeward(true);
-//            }
-//        }
-//        if (Input.GetKeyUp(KeyCode.A) && grounded != true)
-//        {
-//            if (leftDashReady)
-//            {
-//                leftDash();
-//            }
-//            else
-//            {
-//                PrepareDashLeft(true);
-//            }
-//        }
-//        if (Input.GetKeyUp(KeyCode.S) && grounded != true)
-//        {
-//            if (backwardDashReady)
-//            {
-//                backwardDash();
-//            }
-//            else
-//            {
-//                PrepareDashBackward(true);
-//            }
-//        }
-//        if (Input.GetKeyUp(KeyCode.D) && grounded != true)
-//        {
-//            if (rightDashReady)
-//            {
-//                rightDash();
-//            }
-//            else
-//            {
-//                PrepareDashRight(true);
-//            }
-//        }
-//    }
-//    //void forewardDash()
-//    //{
-//    //    forewardDashReady = false;
-//    //    //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
-//    //    characterController.Move(new Vector3(-10, 0, 0));
-//    //    dash = false;
-//    //}
-//    //void backwardDash()
-//    //{
-//    //    backwardDashReady = false;
-//    //    //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
-//    //    characterController.Move(new Vector3(10, 0, 0));
-//    //    dash = false;
-//    //}
-//    //void leftDash()
-//    //{
-//    //    leftDashReady = false;
-//    //    //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
-//    //    characterController.Move(new Vector3(0, 0, -10));
-//    //    dash = false;
-//    //}
-//    void rightDash()
-//    {
-//        rightDashReady = false;
-//        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
-//        rb.addForce(orientation.foreward, * moveSpeed, ForceMode.Impulse);
-//        dash = false;
-//    }
-
-//    //void PrepareDashForeward(bool makeReady)
-//    //{
-//    //    //this is where the handling happens
-//    //    CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
-//    //    Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
-//    //    forewardDashReady = true;
-//    //    dash = true;
-//    //}
-//    //void PrepareDashBackward(bool makeReady)
-//    //{
-//    //    //this is where the handling happens
-//    //    CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
-//    //    Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
-//    //    backwardDashReady = true;
-//    //    dash = true;
-//    //}
-//    //void PrepareDashLeft(bool makeReady)
-//    //{
-//    //    //this is where the handling happens
-//    //    CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
-//    //    Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
-//    //    leftDashReady = true;
-//    //    dash = true;
-//    //}
-//    void PrepareDashRight(bool makeReady)
-//    {
-
-//        CancelInvoke("CancelDash"); // on call this cancels "canceldash" and makes it so you have a period of time to press the key twice
-//        Invoke("CancelDash", maxDelay); // the max delay gives the time period of time the player can press the second key currently 0.5 seconds if done before the time runs out, it bypasses the invoke function and pings dash
-//        rightDashReady = true;
-//        dash = true;
-//    }
 
 //    void CancelDash()
 //    {
