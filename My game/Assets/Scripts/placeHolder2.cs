@@ -13,6 +13,8 @@ public class placeHolder2 : MonoBehaviour
     public Quaternion offsetRot;
     public Vector3 offset;
 
+
+
     //cardinal directions
     public bool movingForward = false;
     public bool movingBackward = false;
