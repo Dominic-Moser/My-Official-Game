@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/test.uss?fileID=7433441132597879392&amp;guid=3c38d7b0c67999f468523299371cc772&amp;type=3#test" />
+    <ui:ListView focusable="true" name="PauseMenu" />
+    <ui:Label text="Look at you, you paused the game you silly goose" display-tooltip-when-elided="true" />
+    <ui:Button text="Exit" display-tooltip-when-elided="true" style="opacity: 1;" />
+</ui:UXML>

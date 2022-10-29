@@ -15,8 +15,8 @@ public class CharacterControllerScript : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
-    [HideInInspector] public float walkSpeed;
-    [HideInInspector] public float sprintSpeed;
+     public float walkSpeed;
+    public float sprintSpeed;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -85,11 +85,11 @@ public class CharacterControllerScript : MonoBehaviour
     {
         if(Input.GetKey(sprintKey))
         {
-            moveSpeed = 30;
+            moveSpeed =  sprintSpeed;
         }
         else
         {
-            moveSpeed = 20;
+            moveSpeed = walkSpeed;
         }
     }
 
@@ -107,6 +107,7 @@ public class CharacterControllerScript : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
     }
 
     private void MovePlayer()
