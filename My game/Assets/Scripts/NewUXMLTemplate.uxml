@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="height: 50%; left: 25%; top: 25%; right: 25%; bottom: 25%; width: 50%;">
-        <ui:Label text="Menu" display-tooltip-when-elided="true" name="nameTest" style="font-size: 25px; height: 100px; width: 100%; -unity-text-align: upper-center; align-items: center; left: 0; top: 25%; right: 25%; bottom: 25%;" />
-        <ui:Button text="test" display-tooltip-when-elided="true" name="test-button" style="width: 50%; height: 50%; left: 25%; top: 45%;" />
+    <ui:VisualElement style="height: 100%; left: 25%; top: 0; right: 25%; bottom: 0; width: 50%; background-color: rgba(188, 68, 68, 0); -unity-background-image-tint-color: rgb(250, 124, 124);">
+        <ui:Label text="Menu" display-tooltip-when-elided="true" name="nameTest" style="font-size: 75px; height: 100px; width: 100%; -unity-text-align: upper-center; align-items: center; left: 0; top: 0; right: 0; bottom: 0; position: relative; -unity-font-style: bold; -unity-font: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=9c09eb950d483d948a284ac024997b62&amp;type=3#NotInter-Regular&apos;);" />
+        <ui:Button text="Settings" display-tooltip-when-elided="true" name="test-button" style="width: 500px; height: 50px; left: 15%; top: 5%; background-color: rgb(78, 99, 118);" />
     </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(142, 121, 121, 0); width: 100%; height: 100%; opacity: 1; background-image: none;" />
 </ui:UXML>
