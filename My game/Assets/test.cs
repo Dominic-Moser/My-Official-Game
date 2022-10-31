@@ -6,7 +6,9 @@ using UnityEngine.UIElements;
 public class test : MonoBehaviour
 {
     private Label label;
-    private Button button;
+    private Button customizationButton;
+    private Button settingsButton;
+    private Button quitGameButton;
 
     public float test1 = 0;
 
@@ -17,20 +19,32 @@ public class test : MonoBehaviour
         var rootVisualElement = GetComponent<UIDocument>().rootVisualElement;
         
         Debug.Log("OnEnable");
-        button = rootVisualElement.Q<Button>("test-button");
+        customizationButton = rootVisualElement.Q<Button>("customization-button");
+        settingsButton = rootVisualElement.Q<Button>("settings-button");
+        quitGameButton = rootVisualElement.Q<Button>("quitgame-button");
 
-        button.RegisterCallback<ClickEvent>(ev => testCounter());
+        customizationButton.RegisterCallback<ClickEvent>(ev => CustomizationScreen());
+        settingsButton.RegisterCallback<ClickEvent>(ev => SettingsScreen());
+        quitGameButton.RegisterCallback<ClickEvent>(ev => QuitGameScreen());
     }
 
-    public void testCounter()
-    {
-        test1++;
-        Debug.Log(test1);
 
-        if (test1 == 3)
-        {
-            disableMenu();
-        }
+
+    public void CustomizationScreen()
+    {
+        Debug.Log("testC");
+    }
+
+    public void SettingsScreen()
+    {
+        Debug.Log("testS");
+
+    }
+
+    public void QuitGameScreen()
+    {
+        Debug.Log("testQ");
+
     }
 
     public void disableMenu()

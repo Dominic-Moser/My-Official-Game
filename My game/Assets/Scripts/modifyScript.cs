@@ -13,9 +13,14 @@ public class modifyScript : MonoBehaviour
     public placeHolder1 p;
     public placeHolder2 p2;
 
+    public float camFOV = 70;
+
+    public Camera camera;
+
     public float smoothSpeed = 0.125f;
     public float smoothRot = 0.125f;
 
+    public CharacterControllerScript characterControllerScript;
 
     public bool normalCameraFollow = false;
     public bool farOutCameraFollow = false;
@@ -28,6 +33,15 @@ public class modifyScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        //if(characterControllerScript.dash == true)
+        //{
+        //    camera.fieldOfView = camFOV + 20;
+        //}
+        //else
+        //{
+        //    camera.fieldOfView = camFOV;
+        //}
+
         if (normalCameraFollow == true)
         {
             Vector3 smoothed = Vector3.Lerp(transform.position, p.transform.position, smoothSpeed);

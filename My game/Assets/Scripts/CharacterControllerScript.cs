@@ -78,7 +78,7 @@ public class CharacterControllerScript : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-        rb.AddForce(Vector3.down * gravity, forceMode);
+        rb.AddForce(Vector3.down * gravity, ForceMode.Force);
     }
 
     private void sprint()
@@ -221,21 +221,18 @@ public class CharacterControllerScript : MonoBehaviour
     void backwardDash()
     {
         backwardDashReady = false;
-        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
         rb.AddForce(transform.right * dashSpeed, ForceMode.Impulse);
         dash = false;
     }
     void leftDash()
     {
         leftDashReady = false;
-        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
         rb.AddForce(-transform.forward * dashSpeed, ForceMode.Impulse);
         dash = false;
     }
     void rightDash()
     {
         rightDashReady = false;
-        //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
         rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
         dash = false;
     }
