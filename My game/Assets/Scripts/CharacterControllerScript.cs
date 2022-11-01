@@ -18,6 +18,8 @@ public class CharacterControllerScript : MonoBehaviour
      public float walkSpeed;
     public float sprintSpeed;
 
+    public bool sprinting;
+
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
@@ -85,11 +87,13 @@ public class CharacterControllerScript : MonoBehaviour
     {
         if(Input.GetKey(sprintKey))
         {
+            sprinting = true;
             moveSpeed =  sprintSpeed;
         }
         else
         {
             moveSpeed = walkSpeed;
+            sprinting = false;
         }
     }
 

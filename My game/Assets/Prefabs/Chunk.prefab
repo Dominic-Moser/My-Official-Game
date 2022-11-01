@@ -111,9 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c1c4743aaa163419c0ac06fe8d0f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  update: 0
-  rendered: 0
-  world: {fileID: 0}
+  update: 1
+  rendered: 1
+  world: {fileID: 7709693272188922260, guid: d86d8d2b4fc1dfd42ab77e9f90c931eb, type: 3}
   pos:
     x: 0
     y: 0

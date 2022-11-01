@@ -33,14 +33,20 @@ public class modifyScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if(characterControllerScript.dash == true)
-        //{
-        //    camera.fieldOfView = camFOV + 20;
-        //}
-        //else
-        //{
-        //    camera.fieldOfView = camFOV;
-        //}
+        if (characterControllerScript.sprinting == true)
+        {
+            if(camera.fieldOfView < camFOV + 20)
+            {
+                camera.fieldOfView += 2;
+            }
+        }
+        else
+        {
+            if(camera.fieldOfView > camFOV)
+            {
+                camera.fieldOfView -= 1;
+            }
+        }
 
         if (normalCameraFollow == true)
         {
