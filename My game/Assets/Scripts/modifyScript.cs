@@ -3,8 +3,6 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
-using UnityEditor.PackageManager;
-using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 
 public class modifyScript : MonoBehaviour
 {
