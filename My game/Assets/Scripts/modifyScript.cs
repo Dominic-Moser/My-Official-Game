@@ -26,6 +26,7 @@ public class modifyScript : MonoBehaviour
     public bool farOutCameraFollow = false;
     public bool closeCameraFollow = false;
 
+    Ray ray;
     private void Start()
     {
         normalCameraFollow = true;
@@ -67,6 +68,21 @@ public class modifyScript : MonoBehaviour
 
             Quaternion smoothedRot = Quaternion.Lerp(transform.rotation, p2.transform.rotation, smoothRot);
             transform.rotation = smoothedRot;
+        }
+
+        RaycastHit hitInfo = new RaycastHit();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 1000) && Physics.Raycast(ray, out hitInfo))
+            {
+                Terrain.SetBlock(hit, new BlockAir());
+                Vector3 chunkPos = hit.point;
+                Chunk chunk = null;
+                chunks.TryGetValue(new WorldPos(Convert.ToInt32(chunkPos.x), Convert.ToInt32(chunkPos.y), Convert.ToInt32(chunkPos.z)), out chunk);
+
+                Debug.Log("Test");
+            }
         }
     }
 
@@ -130,20 +146,7 @@ public class modifyScript : MonoBehaviour
 //Quaternion smoothedRotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
 //transform.rotation = smoothedRotation;
 
-//RaycastHit hitInfo = new RaycastHit();
-//if (Input.GetMouseButtonDown(0))
-//{
-//    RaycastHit hit;
-//    if (Physics.Raycast(transform.position, transform.forward, out hit, 100) && Physics.Raycast(ray, out hitInfo))
-//    {
-//        Terrain.SetBlock(hit, new BlockAir());
-//        Vector3 chunkPos = hit.point;
-//        Chunk chunk = null;
-//        chunks.TryGetValue(new WorldPos(Convert.ToInt32(chunkPos.x), Convert.ToInt32(chunkPos.y), Convert.ToInt32(chunkPos.z)), out chunk);
 
-//        Debug.Log("Test");
-//    }
-//}
 
 ////placeholder camera movement smoothing
 //if (normalCameraFollow == false)

@@ -219,25 +219,25 @@ public class CharacterControllerScript : MonoBehaviour
     {
         forewardDashReady = false;
         //dash action goes here - if your not cool like me, in wich case you wont have the common sense to put a function here
-        rb.AddForce(-transform.right * dashSpeed, ForceMode.Impulse);
+        rb.AddForce(-transform.right * dashSpeed, ForceMode.Acceleration);
         dash = false;
     }
     void backwardDash()
     {
         backwardDashReady = false;
-        rb.AddForce(transform.right * dashSpeed, ForceMode.Impulse);
+        rb.AddForce(transform.right * dashSpeed, ForceMode.Acceleration);
         dash = false;
     }
     void leftDash()
     {
         leftDashReady = false;
-        rb.AddForce(-transform.forward * dashSpeed, ForceMode.Impulse);
+        rb.AddForce(-transform.forward * dashSpeed, ForceMode.Acceleration);
         dash = false;
     }
     void rightDash()
     {
         rightDashReady = false;
-        rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
+        rb.AddForce(transform.forward * dashSpeed, ForceMode.Acceleration);
         dash = false;
     }
 
