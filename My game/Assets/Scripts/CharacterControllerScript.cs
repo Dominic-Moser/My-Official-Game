@@ -229,7 +229,7 @@ public class CharacterControllerScript : MonoBehaviour
         dash = false;
     }
     void leftDash()
-    {
+    { 
         leftDashReady = false;
         rb.AddForce(-transform.forward * dashSpeed, ForceMode.Acceleration);
         dash = false;
