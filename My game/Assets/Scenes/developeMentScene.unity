@@ -580,7 +580,7 @@ MonoBehaviour:
   gravity: 35
   forceMode: 0
   dash: 0
-  dashSpeed: 500
+  dashSpeed: 35000
   maxDelay: 0.5
   text_speed: {fileID: 0}
 --- !u!54 &1312647889
@@ -607,7 +607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312647887}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24274194, y: 475.9, z: -6.15}
+  m_LocalPosition: {x: 0.24274194, y: 80, z: -6.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
